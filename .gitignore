@@ -1,3 +1,4 @@
+segformer-b0-finetuned-segments-sidewalk-outputs/**
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
