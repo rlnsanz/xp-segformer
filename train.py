@@ -105,9 +105,9 @@ def compute_metrics(eval_pred):
         return metrics
 
 
-epochs = 5
-lr = 0.00006
-batch_size = 4
+epochs = flor.arg("epochs", 5)
+lr = flor.arg("lr", 6e-5)
+batch_size = flor.arg("batch_size", 4)
 
 
 train_loader = torchdata.DataLoader(
@@ -139,7 +139,7 @@ for epoch in Flor.loop(range(epochs)):
             )
         )
 
-        if i == 49:
+        if i == flor.arg("num_steps", 49):
             break
 
 print("Model TEST")
