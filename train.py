@@ -12,6 +12,7 @@ from datasets import load_dataset, DatasetDict
 
 import flor
 from flor import MTK as Flor
+import numpy as np 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -105,15 +106,21 @@ def compute_metrics(eval_pred):
         return metrics
 
 
-epochs = flor.arg("epochs", 5)
-lr = flor.arg("lr", 6e-5)
-batch_size = flor.arg("batch_size", 4)
+epochs = 0 # flor.arg("epochs", 5)
+lr = 6e-5 # flor.arg("lr", 6e-5)
+batch_size = 4 # flor.arg("batch_size", 4)
 
 
 train_loader = torchdata.DataLoader(
     dataset=train_ds.with_transform(train_transforms),  # type: ignore
     batch_size=batch_size,
     shuffle=True,
+    collate_fn=torchdata.default_collate,
+)
+test_loader = torchdata.DataLoader(
+    dataset=test_ds.with_transform(val_transforms),  # type: ignore
+    batch_size=batch_size,
+    shuffle=False,
     collate_fn=torchdata.default_collate,
 )
 optimizer = torch.optim.AdamW(model.parameters(), lr=lr)
@@ -139,7 +146,19 @@ for epoch in Flor.loop(range(epochs)):
             )
         )
 
-        if i == flor.arg("num_steps", 49):
+        if i == 49:  # flor.arg("num_steps", 49):
             break
 
 print("Model TEST")
+
+model.eval()
+with torch.no_grad(): 
+    for i, batch in Flor.loop(enumerate(test_loader)):
+        for k in batch:
+            v = batch[k]
+            batch[k] = v.to(device) if hasattr(v, "to") else v
+        outputs = model(**batch)
+        labels = np.array(batch['labels'])
+        logits = np.array(outputs.logits) 
+        metrics = compute_metrics((logits, labels))
+        print("mean_iou: ", metrics['mean_iou'])
