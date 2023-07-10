@@ -1,15 +1,12 @@
 {
     "NAME": "BATCH",
-    "TSTAMP": "2023-07-10T03:06:53.json",
-    "saturation": 0.25,
-    "hue": 0.1,
-    "epochs": 5,
+    "TSTAMP": "2023-07-10T14:59:46.json",
     "PROJID": "xp-segformer_flor.shadow.sigmod",
-    "EPOCHS": 5,
+    "EPOCHS": 0,
     "CLI": {
         "batch_size": "3",
         "lr": "1e-05",
         "brightness": "0.3",
-        "contrast": "0.25"
+        "contrast": "0.3"
     }
 }
