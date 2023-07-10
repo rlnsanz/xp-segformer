@@ -106,9 +106,9 @@ def compute_metrics(eval_pred):
         return metrics
 
 
-epochs = 0 # flor.arg("epochs", 5)
-lr = 6e-5 # flor.arg("lr", 6e-5)
-batch_size = 4 # flor.arg("batch_size", 4)
+epochs = flor.arg("epochs", 5)
+lr = flor.arg("lr", 6e-5)
+batch_size = flor.arg("batch_size", 4)
 
 
 train_loader = torchdata.DataLoader(
@@ -153,12 +153,12 @@ print("Model TEST")
 
 model.eval()
 with torch.no_grad(): 
-    for i, batch in Flor.loop(enumerate(test_loader)):
+    for i, batch in enumerate(test_loader):
         for k in batch:
             v = batch[k]
             batch[k] = v.to(device) if hasattr(v, "to") else v
         outputs = model(**batch)
-        labels = np.array(batch['labels'])
-        logits = np.array(outputs.logits) 
+        labels = np.array(batch['labels'].cpu())
+        logits = np.array(outputs.cpu().logits) 
         metrics = compute_metrics((logits, labels))
         print("mean_iou: ", metrics['mean_iou'])
