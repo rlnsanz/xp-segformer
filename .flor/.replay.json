@@ -1,12 +1,15 @@
 {
-    "NAME": "debugRun",
-    "TSTAMP": "2023-05-04T21:26:43.json",
-    "lr": 6e-05,
-    "batch_size": 4,
-    "PROJID": "xp-segformer_flor.shadow",
-    "EPOCHS": 2,
+    "NAME": "BATCH",
+    "TSTAMP": "2023-07-10T01:56:44.json",
+    "saturation": 0.25,
+    "hue": 0.1,
+    "epochs": 5,
+    "PROJID": "xp-segformer_flor.shadow.sigmod",
+    "EPOCHS": 5,
     "CLI": {
-        "num_steps": "19",
-        "epochs": "2"
+        "batch_size": "2",
+        "lr": "1e-05",
+        "brightness": "0.25",
+        "contrast": "0.25"
     }
 }
