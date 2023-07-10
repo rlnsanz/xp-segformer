@@ -159,6 +159,6 @@ with torch.no_grad():
             batch[k] = v.to(device) if hasattr(v, "to") else v
         outputs = model(**batch)
         labels = np.array(batch['labels'].cpu())
-        logits = np.array(outputs.cpu().logits) 
+        logits = np.array(outputs.logits.cpu()) 
         metrics = compute_metrics((logits, labels))
         print("mean_iou: ", metrics['mean_iou'])
