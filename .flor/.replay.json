@@ -1,6 +1,6 @@
 {
     "NAME": "BATCH",
-    "TSTAMP": "2023-07-10T02:27:52.json",
+    "TSTAMP": "2023-07-10T02:30:54.json",
     "saturation": 0.25,
     "hue": 0.1,
     "epochs": 5,
@@ -10,6 +10,6 @@
         "batch_size": "2",
         "lr": "0.0001",
         "brightness": "0.3",
-        "contrast": "0.25"
+        "contrast": "0.3"
     }
 }
