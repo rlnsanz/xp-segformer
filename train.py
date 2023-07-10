@@ -47,7 +47,7 @@ model = SegformerForSemanticSegmentation.from_pretrained(
 assert isinstance(feature_extractor, SegformerFeatureExtractor)
 assert isinstance(model, SegformerForSemanticSegmentation)
 model = model.to(device)
-jitter = ColorJitter(brightness=0.25, contrast=0.25, saturation=0.25, hue=0.1)
+jitter = ColorJitter(brightness=flor.arg('brightness', 0.25), contrast=flor.arg('contrast', 0.25), saturation=flor.arg('saturation', 0.25), hue=flor.arg('hue', 0.1))
 
 
 def train_transforms(example_batch):
