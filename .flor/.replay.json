@@ -1,0 +1,12 @@
+{
+    "NAME": "debugRun",
+    "TSTAMP": "2023-05-04T21:26:43.json",
+    "lr": 6e-05,
+    "batch_size": 4,
+    "PROJID": "xp-segformer_flor.shadow",
+    "EPOCHS": 2,
+    "CLI": {
+        "num_steps": "19",
+        "epochs": "2"
+    }
+}
